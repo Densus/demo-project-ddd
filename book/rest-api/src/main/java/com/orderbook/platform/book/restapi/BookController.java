@@ -2,7 +2,7 @@ package com.orderbook.platform.book.restapi;
 
 import com.orderbook.platform.book.application.BookService;
 import com.orderbook.platform.book.application.CreateBookVO;
-import com.orderbook.common.api.rest.BaseController;
+import com.orderbook.platform.common.api.rest.BaseController;
 import com.orderbook.platform.book.restapi.request.CreateRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

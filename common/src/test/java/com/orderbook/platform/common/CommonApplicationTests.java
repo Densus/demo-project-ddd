@@ -1,4 +1,4 @@
-package com.orderbook.common;
+package com.orderbook.platform.common;
 
 
 //@SpringBootTest

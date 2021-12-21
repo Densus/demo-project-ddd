@@ -1,4 +1,4 @@
-package com.orderbook.common.api.rest;
+package com.orderbook.platform.common.api.rest;
 
 import com.klikcair.rs.common.security.UserContext;
 

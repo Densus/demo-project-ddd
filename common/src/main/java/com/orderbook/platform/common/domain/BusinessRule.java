@@ -1,4 +1,4 @@
-package com.orderbook.common.domain;
+package com.orderbook.platform.common.domain;
 
 public interface BusinessRule {
     boolean isBroken();

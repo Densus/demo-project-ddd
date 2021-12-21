@@ -1,4 +1,4 @@
-package com.orderbook.common.domain;
+package com.orderbook.platform.common.domain;
 
 public class BusinessRuleValidationException extends Exception{
     private static final long serialVersionUID = -7560159790047077694L;
