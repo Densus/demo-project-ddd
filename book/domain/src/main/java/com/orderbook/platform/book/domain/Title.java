@@ -19,5 +19,10 @@ public class Title {
 
     private void validate(String title){
         Assert.notNull(title, "title must not be null");
+        if (title.isEmpty()) {
+            throw new IllegalArgumentException("title must not be empty");
+        }
     }
+
+
 }

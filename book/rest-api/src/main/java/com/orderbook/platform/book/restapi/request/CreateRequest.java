@@ -6,11 +6,18 @@ import com.fasterxml.jackson.databind.deser.std.StringDeserializer;
 import lombok.Getter;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 public class CreateRequest {
+    @JsonProperty
+    @NotEmpty
+    @JsonDeserialize(using = StringDeserializer.class)
+    private String isbn;
+
     @JsonProperty
     @NotEmpty
     @JsonDeserialize(using = StringDeserializer.class)
@@ -22,8 +29,7 @@ public class CreateRequest {
     private String description;
 
     @JsonProperty
-    @NotEmpty
-    @JsonDeserialize(using = StringDeserializer.class)
+    @NotNull(message = "published_on is required")
     private Date published_on;
 
     @JsonProperty
@@ -32,12 +38,10 @@ public class CreateRequest {
     private String publisher;
 
     @JsonProperty
-    @NotEmpty
-    @JsonDeserialize(using = StringDeserializer.class)
+    @NotNull(message = "org_price is required")
     private BigDecimal org_price;
 
     @JsonProperty
-    @NotEmpty
-    @JsonDeserialize(using = StringDeserializer.class)
-    private String author;
+    @NotNull
+    private List<String> author;
 }

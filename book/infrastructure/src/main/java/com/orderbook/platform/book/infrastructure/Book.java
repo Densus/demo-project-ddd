@@ -1,6 +1,6 @@
 package com.orderbook.platform.book.infrastructure;
 
-import com.klikcair.rs.common.util.StringUtils;
+import org.springframework.util.StringUtils;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -17,8 +17,8 @@ public class Book {
     @Column(name = "id")
     private Long id;
 
-//    @Column(name = "uid")
-//    private String uid;
+    @Column(name = "isbn", unique = true)
+    private String isbn;
 
     @Column(name = "title")
     private String title;
@@ -35,31 +35,19 @@ public class Book {
     @Column(name = "org_price")
     private BigDecimal orgPrice;
 
-//    @Column(name = "act_price")
-//    private int actPrice;
-//
-//    @Column(name = "promotional_text")
-//    private String promotionalText;
-//
-//    @Column(name = "image_url")
-//    private String imageUrl;
-
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "book_author",
             joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "author_id"))
-    Set<Author> authors;
-
-//    @OneToMany(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "book_id")
-//    List<Review> reviews;
+    Set<Author> authors = new HashSet<>();
 
 
     public Book() {
     }
 
-    public Book(Long id, String title, String description, Date publishedOn, String publisher, BigDecimal orgPrice) {
+    public Book(Long id, String isbn, String title, String description, Date publishedOn, String publisher, BigDecimal orgPrice) {
         this.id = id;
+        this.isbn = isbn;
         this.title = title;
         this.description = description;
         this.publishedOn = publishedOn;
@@ -75,6 +63,14 @@ public class Book {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
     public String getTitle() {
@@ -139,7 +135,7 @@ public class Book {
     }
 
     public void saveAuthor(String author){
-        if(!StringUtils.isNullOrEmpty(author)){
+        if(!StringUtils.isEmpty(author)){
             Set<Book> temp = new HashSet<>();
             temp.add(this);
             this.authors.add(new Author(author, temp));

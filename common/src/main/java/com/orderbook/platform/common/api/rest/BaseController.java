@@ -1,9 +1,5 @@
 package com.orderbook.platform.common.api.rest;
 
-import com.klikcair.rs.common.security.UserContext;
-
-import javax.ws.rs.ForbiddenException;
-
 public abstract class BaseController {
 //    protected String validateAndGetUserUid(String userUID, UserContext userContext) {
 //        String filteredUserUid = getUserUid(userUID, userContext);

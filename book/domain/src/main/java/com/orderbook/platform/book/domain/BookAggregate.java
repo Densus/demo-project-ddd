@@ -7,6 +7,8 @@ import java.util.*;
 public class BookAggregate {
     private Long id;
 
+    private String isbn;
+
     private Title title;
 
     private Description description;
@@ -19,8 +21,10 @@ public class BookAggregate {
 
     private List<Author> authors;
 
-    public BookAggregate(Long id, String title, String description, Date published_on, String publisher, BigDecimal org_price, List<Author> authors) {
+
+    public BookAggregate(Long id, String isbn, String title, String description, Date published_on, String publisher, BigDecimal org_price, List<Author> authors) {
         this.id = id;
+        this.isbn = isbn;
         this.title = new Title(title);
         this.description = new Description(description);
         this.published_on = published_on;
@@ -35,6 +39,14 @@ public class BookAggregate {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void changeIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
     public Title getTitle() {
@@ -91,18 +103,29 @@ public class BookAggregate {
 
     public static class Builder{
         private Long id;
+        private String isbn;
         private String title;
         private String description;
         private Date published_on;
         private String publisher;
         private BigDecimal org_price;
-        private List<Author> authors;
+        private List<Author> authors = new ArrayList<>();
 
         public Builder() {
         }
 
         private static Builder newInstance() {
             return new Builder();
+        }
+
+        public Builder id(Long id){
+            this.id = id;
+            return  this;
+        }
+
+        public Builder isbn(String isbn){
+            this.isbn = isbn;
+            return this;
         }
 
         public Builder title(String title){
@@ -130,18 +153,14 @@ public class BookAggregate {
             this.org_price = org_price;
             return this;
         }
-
-        public Builder saveAuthor(String author){
-            if(author == null) {
-                authors = new ArrayList<>();
-            }
-
-            authors.add(new Author(author));
+        public Builder authors(List<Author> authors){
+            this.authors = authors;
             return this;
         }
-
         public BookAggregate build() {
-            return new BookAggregate(id, title, description, published_on, publisher, org_price, authors);
+            return new BookAggregate(id, isbn, title, description, published_on, publisher, org_price, authors);
         }
+
+
     }
 }

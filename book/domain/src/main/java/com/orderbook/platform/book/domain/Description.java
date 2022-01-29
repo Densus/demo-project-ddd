@@ -17,6 +17,9 @@ public class Description {
     }
 
     private void validate(String description) {
-        Assert.notNull(description, "title must not be null");
+        Assert.notNull(description, "description must not be null");
+        if (description.isEmpty()) {
+            throw new IllegalArgumentException("description must not be empty");
+        }
     }
 }

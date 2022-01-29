@@ -13,6 +13,9 @@ public class Name {
 
     public Name(String name) {
         Assert.notNull(name, "name must not be null");
+        if (name.isEmpty()) {
+            throw new IllegalArgumentException("name must not be empty");
+        }
         this.name = name;
     }
 }

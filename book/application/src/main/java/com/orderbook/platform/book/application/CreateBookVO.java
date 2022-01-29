@@ -6,11 +6,13 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @Builder
 @Data
 @AllArgsConstructor
 public class CreateBookVO {
+    private final String isbn;
 
     private final String title;
 
@@ -22,5 +24,5 @@ public class CreateBookVO {
 
     private final BigDecimal org_price;
 
-    private final String author;
+    private final List<String> author;
 }
